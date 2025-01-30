@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://muo864qhjftj"]
+
+[ext_resource type="Script" path="res://Scripts/Mini Games/Mini Game 2/ball.gd" id="1_3be18"]
+[ext_resource type="Texture2D" uid="uid://2fj66dj1psi7" path="res://Assets/Mini Games/Mini Game 2/ball.png" id="2_ybjvy"]
+[ext_resource type="Texture2D" uid="uid://slpclh1ju4vi" path="res://Assets/Details/light.png" id="3_2ta0f"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3ro4n"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rhv0s"]
+radius = 16.0
+
+[node name="ball" type="RigidBody2D"]
+mass = 0.5
+physics_material_override = SubResource("PhysicsMaterial_3ro4n")
+script = ExtResource("1_3be18")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rhv0s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ybjvy")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.25
+texture = ExtResource("3_2ta0f")

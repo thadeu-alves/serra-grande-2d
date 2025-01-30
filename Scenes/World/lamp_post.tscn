@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu8plhkisr11o"]
+
+[ext_resource type="Texture2D" uid="uid://wua7ux8u4dxd" path="res://Assets/Details/lamp_post.png" id="1_wwpym"]
+[ext_resource type="Texture2D" uid="uid://phajtlaroav5" path="res://Assets/Details/lamp_post_light.png" id="2_154ig"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eclk4"]
+polygon = PackedVector2Array(14, -19, 20, -19, 20, -21, 18.5, -22, 16, -23, 13, -21, 13, -20)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3xakq"]
+texture = ExtResource("1_wwpym")
+0:3/size_in_atlas = Vector2i(3, 1)
+0:3/0 = 0
+0:0/size_in_atlas = Vector2i(3, 3)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_eclk4")
+
+[sub_resource type="TileSet" id="TileSet_cqokr"]
+occlusion_layer_0/light_mask = 1
+sources/0 = SubResource("TileSetAtlasSource_3xakq")
+
+[node name="LampPost" type="Node2D"]
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(-8, -59)
+scale = Vector2(0.5, 0.5)
+energy = 0.3
+shadow_enabled = true
+texture = ExtResource("2_154ig")
+
+[node name="Top" type="TileMap" parent="."]
+z_index = 9
+tile_set = SubResource("TileSet_cqokr")
+format = 2
+layer_0/tile_data = PackedInt32Array(-196608, 0, 0)
+
+[node name="Bottom" type="TileMap" parent="."]
+z_index = 2
+tile_set = SubResource("TileSet_cqokr")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65536, 0, 3)

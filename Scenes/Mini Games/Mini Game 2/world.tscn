@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://d4asf7oocskaa"]
+
+[ext_resource type="PackedScene" uid="uid://bsrrkwkoomvp5" path="res://Scenes/Mini Games/Mini Game 2/player.tscn" id="1_bs3n3"]
+[ext_resource type="Script" path="res://Scripts/Mini Games/Mini Game 2/world.gd" id="1_hifmc"]
+[ext_resource type="Texture2D" uid="uid://bmu8rg1mhkqbj" path="res://Assets/Mini Games/Mini Game 2/bg-back.png" id="2_shcs7"]
+[ext_resource type="PackedScene" uid="uid://muo864qhjftj" path="res://Scenes/Mini Games/Mini Game 2/ball.tscn" id="2_urbfl"]
+[ext_resource type="Texture2D" uid="uid://slpclh1ju4vi" path="res://Assets/Details/light.png" id="5_j8mhm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqa8n"]
+size = Vector2(557, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qk05g"]
+size = Vector2(595, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oj33k"]
+size = Vector2(20, 513)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k5kbf"]
+radius = 6.0
+height = 196.0
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_hifmc")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(2.12132, 2.01875)
+texture = ExtResource("2_shcs7")
+centered = false
+
+[node name="Floor" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(287.5, 301)
+shape = SubResource("RectangleShape2D_kqa8n")
+debug_color = Color(0.862745, 0, 0.866667, 0.419608)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(10, 313)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(277.5, 0)
+shape = SubResource("RectangleShape2D_qk05g")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(0, 66.5)
+shape = SubResource("RectangleShape2D_oj33k")
+
+[node name="Wall3" type="StaticBody2D" parent="."]
+position = Vector2(577, -92)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+position = Vector2(0, 156.5)
+shape = SubResource("RectangleShape2D_oj33k")
+
+[node name="Wall4" type="StaticBody2D" parent="."]
+position = Vector2(10, -183)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4"]
+position = Vector2(277.5, 0)
+shape = SubResource("RectangleShape2D_qk05g")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1, -29)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(287, 256)
+shape = SubResource("CapsuleShape2D_k5kbf")
+
+[node name="Player" parent="." instance=ExtResource("1_bs3n3")]
+position = Vector2(155, 235)
+
+[node name="Player2" parent="." instance=ExtResource("1_bs3n3")]
+position = Vector2(465, 233)
+player_id = 2
+
+[node name="ball" parent="." instance=ExtResource("2_urbfl")]
+position = Vector2(297, 10)
+gravity_scale = 0.5
+freeze_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(2, 2)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(28, 20)
+color = Color(1, 1, 0.615686, 1)
+energy = 0.5
+texture = ExtResource("5_j8mhm")
+
+[connection signal="body_entered" from="Floor" to="." method="_on_floor_body_entered"]

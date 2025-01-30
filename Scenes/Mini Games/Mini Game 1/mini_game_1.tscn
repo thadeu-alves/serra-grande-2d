@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://ba5c1wf0ukvlh"]
+
+[ext_resource type="Script" path="res://Scripts/Mini Games/Mini Game 1/mini_game_1.gd" id="1_aemm4"]
+[ext_resource type="PackedScene" uid="uid://u3oi4iseqqel" path="res://Scenes/Mini Games/Mini Game 1/PlanePlayer.tscn" id="1_lsjlu"]
+[ext_resource type="Texture2D" uid="uid://dx5lryvjs2de2" path="res://Assets/Mini Games/Mini Game 1/bg-back.png" id="2_iy07m"]
+[ext_resource type="FontFile" uid="uid://3hrgisfgqoxi" path="res://Assets/UI/SupremeSpike-KVO8D.otf" id="3_vgeff"]
+[ext_resource type="AudioStream" uid="uid://dbwqddbv0bek0" path="res://Assets/Mini Games/Mini Game 1/Sound FX/explosion.wav" id="4_wvcly"]
+[ext_resource type="AudioStream" uid="uid://i57j1ddrfc4e" path="res://Assets/Mini Games/Mini Game 1/Sound FX/hit.wav" id="5_c3dma"]
+
+[node name="mini_game_1" type="Node2D"]
+script = ExtResource("1_aemm4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+scale = Vector2(2.11765, 2.03125)
+texture = ExtResource("2_iy07m")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("1_lsjlu")]
+position = Vector2(155, 151)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(2, 2)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+offset_left = 26.0
+offset_top = 26.0
+offset_right = 126.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("3_vgeff")
+text = "Points: 00"
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+offset_left = 446.0
+offset_top = 28.0
+offset_right = 546.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("3_vgeff")
+text = "Points: 00"
+
+[node name="sfx_dead" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(155, 151)
+stream = ExtResource("4_wvcly")
+
+[node name="sfx_enemy_dead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_c3dma")

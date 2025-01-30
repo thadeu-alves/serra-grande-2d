@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://buu8t6ecp3cwk"]
+
+[ext_resource type="Texture2D" uid="uid://cntf72rud5328" path="res://Assets/Mini Games/Mini Game 1/asteroid-small.png" id="2_feokm"]
+
+[sub_resource type="GDScript" id="GDScript_jtwtk"]
+script/source = "extends EnemyMG1
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e24lg"]
+radius = 7.0
+
+[node name="Enemy" type="CharacterBody2D"]
+script = SubResource("GDScript_jtwtk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_feokm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e24lg")

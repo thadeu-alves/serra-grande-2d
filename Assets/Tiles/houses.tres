@@ -1,0 +1,32 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dtj1qhisf0lky"]
+
+[ext_resource type="Texture2D" uid="uid://y8ulxfyt46gu" path="res://Assets/Tiles/Png/Houses.png" id="1_5s3e0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a0hf4"]
+texture = ExtResource("1_5s3e0")
+1:31/size_in_atlas = Vector2i(6, 4)
+1:31/0 = 0
+8:31/size_in_atlas = Vector2i(6, 4)
+8:31/0 = 0
+6:17/size_in_atlas = Vector2i(6, 3)
+6:17/0 = 0
+13:17/size_in_atlas = Vector2i(4, 3)
+13:17/0 = 0
+18:11/size_in_atlas = Vector2i(4, 3)
+18:11/0 = 0
+23:11/size_in_atlas = Vector2i(4, 3)
+23:11/0 = 0
+0:10/size_in_atlas = Vector2i(6, 4)
+0:10/0 = 0
+52:1/size_in_atlas = Vector2i(8, 11)
+52:1/0 = 0
+40:1/size_in_atlas = Vector2i(9, 5)
+40:1/0 = 0
+52:13/size_in_atlas = Vector2i(8, 6)
+52:13/0 = 0
+52:20/size_in_atlas = Vector2i(8, 5)
+52:20/0 = 0
+52:20/0/z_index = 1
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_a0hf4")

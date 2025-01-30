@@ -1,0 +1,117 @@
+[gd_scene load_steps=17 format=3 uid="uid://u3oi4iseqqel"]
+
+[ext_resource type="Script" path="res://Scripts/Mini Games/Mini Game 1/Player.gd" id="1_4y7va"]
+[ext_resource type="Texture2D" uid="uid://dmvymdagxsu3a" path="res://Assets/Mini Games/Mini Game 1/player2.png" id="2_j8rdf"]
+[ext_resource type="Texture2D" uid="uid://dgo76u32eh3jg" path="res://Assets/Mini Games/Mini Game 1/player1.png" id="3_saqrb"]
+[ext_resource type="Texture2D" uid="uid://bc2se5qd0664s" path="res://Assets/Mini Games/Mini Game 1/explosion.png" id="3_u2y4d"]
+[ext_resource type="Texture2D" uid="uid://dck1of72hwsla" path="res://Assets/Mini Games/Mini Game 1/player3.png" id="4_jnkaf"]
+[ext_resource type="AudioStream" uid="uid://dg5btn6q4lor0" path="res://Assets/Mini Games/Mini Game 1/Sound FX/shot 1.wav" id="5_ayqyh"]
+[ext_resource type="AudioStream" uid="uid://dbwqddbv0bek0" path="res://Assets/Mini Games/Mini Game 1/Sound FX/explosion.wav" id="6_e40ie"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sy3s7"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xu12b"]
+radius = 11.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mqge"]
+atlas = ExtResource("3_u2y4d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujp50"]
+atlas = ExtResource("3_u2y4d")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xitj"]
+atlas = ExtResource("3_u2y4d")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e27o3"]
+atlas = ExtResource("3_u2y4d")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b6nq"]
+atlas = ExtResource("3_u2y4d")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wd4m"]
+atlas = ExtResource("3_u2y4d")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k8pnk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j8rdf")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mqge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujp50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xitj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e27o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b6nq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wd4m")
+}],
+"loop": true,
+"name": &"Explosion",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_saqrb")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jnkaf")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_4y7va")
+
+[node name="Area2D" type="Area2D" parent="."]
+z_index = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_sy3s7")
+debug_color = Color(0.937255, 0, 0.631373, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xu12b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k8pnk")
+animation = &"Idle"
+frame_progress = 0.298382
+
+[node name="sfx_shot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ayqyh")
+volume_db = -20.0
+
+[node name="sfx_dead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_e40ie")
+volume_db = -20.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

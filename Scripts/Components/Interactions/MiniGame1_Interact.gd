@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var interaction_area = $InteractionArea
-@onready var mini_game = preload("res://Scenes/Mini Games/Mini Game 1/mini_game_1.tscn")
 @onready var player = get_parent().get_node("Player")
 @onready var label = $Label
 
@@ -15,20 +14,30 @@ func _physics_process(delta):
 		interact()
 
 func interact():
-	print("MUDANDO DE CENA")
+	print("DIALOGO")
 	var new_dialogue = ResourceLoader.load("res://Scenes/Components/Dialogue System/Dialogue.tscn")
-	#if new_dialogue:
-	#	var dialogue = new_dialogue.instantiate()
-	#	dialogue.text = "preciso de ajuda"
-	
-	
-	
-	player.is_transition = true
-	await get_tree().create_timer(2).timeout
-	
-	
-	ScenesManager.change_scene("res://Scenes/Mini Games/Mini Game 1/mini_game_1.tscn")
-	player.is_gaming = true
+	if new_dialogue:
+		var dialogue = new_dialogue.instantiate()
+		dialogue.text = "preciso de ajuda"
+		player.is_dialogue = true
+		get_tree().root.add_child(dialogue)
+		var response = await dialogue.get_response() 
+		if response:
+			print("MUDANDO DE CENA")
+			
+			player.is_transition = true
+			FadeTransition.transition()
+			await FadeTransition._transition_finished
+			#await get_tree().create_timer(2).timeout
+			
+			
+			ScenesManager.change_scene("res://Scenes/Mini Games/Mini Game 1/world.tscn")
+			player.is_dialogue = false
+			player.is_gaming = true 
+		else:
+			player.is_dialogue = false
+	else:
+		return
 
 func display_label():
 	label.global_position.y = global_position.y

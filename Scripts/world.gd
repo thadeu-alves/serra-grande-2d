@@ -5,12 +5,14 @@ extends Node2D
 @onready var canvas_modulate = $CanvasModulate
 @export var show = false
 
+
 var last_is_gaming = null  
 
 func _ready():
 	ScenesManager.current_scene = self
 
 func _physics_process(delta):
+	
 	if Input.is_action_just_pressed("esc"):
 		player.is_gaming = false
 	

@@ -213,6 +213,12 @@ shape = SubResource("CircleShape2D_dpbhy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+limit_left = -1810
+limit_top = -260
+limit_right = 1150
+limit_bottom = 880
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="sfx_walking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_fhjjx")

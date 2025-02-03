@@ -10,6 +10,7 @@ var is_walking = false
 var is_transition = false
 var is_gaming = false
 var is_dialogue = false
+var is_inside = false
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO
@@ -50,11 +51,14 @@ func _physics_process(delta):
 		animated_sprite_2d.play("Idle")
 		camera_2d.enabled = false
 		$CollisionShape2D.disabled = true
+	elif is_inside:
+		camera_2d.enabled = false
 	else:
 		camera_2d.enabled = true
 		$CollisionShape2D.disabled = false
 	
-	
+	#if Input.is_action_just_pressed("interact"):
+	#	FadeTransition.transition()
 	
 
 	velocity = direction.normalized() * SPEED

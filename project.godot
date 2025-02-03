@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 ScenesManager="*res://Scripts/Components/ScenesManager.gd"
+FadeTransition="*res://Scenes/Components/fade_transition.tscn"
 
 [display]
 

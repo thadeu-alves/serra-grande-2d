@@ -1,18 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bumhoyi2bpxph"]
+[gd_scene load_steps=5 format=3 uid="uid://b24fdjovfy5v0"]
 
-[ext_resource type="Script" path="res://Scripts/Components/Interactions/Interactable.gd" id="1_o7hv5"]
-[ext_resource type="Texture2D" uid="uid://dbkwh5gvxemv" path="res://icon.svg" id="2_6mcyv"]
-[ext_resource type="FontFile" uid="uid://3hrgisfgqoxi" path="res://Assets/UI/SupremeSpike-KVO8D.otf" id="3_f4klc"]
+[ext_resource type="Script" path="res://Scripts/Components/Interactions/MiniGame1_Interact.gd" id="1_7lo65"]
+[ext_resource type="Texture2D" uid="uid://dbkwh5gvxemv" path="res://icon.svg" id="2_q6kwp"]
+[ext_resource type="FontFile" uid="uid://3hrgisfgqoxi" path="res://Assets/UI/SupremeSpike-KVO8D.otf" id="3_aoykn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sy2hd"]
 radius = 120.0
 
-[node name="Interactable" type="Node2D"]
+[node name="MiniGame 1" type="Node2D"]
+z_index = 999
 scale = Vector2(0.25, 0.25)
-script = ExtResource("1_o7hv5")
+script = ExtResource("1_7lo65")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_6mcyv")
+texture = ExtResource("2_q6kwp")
 
 [node name="InteractionArea" type="Area2D" parent="."]
 
@@ -29,7 +30,7 @@ offset_bottom = 26.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_f4klc")
+theme_override_fonts/font = ExtResource("3_aoykn")
 theme_override_font_sizes/font_size = 35
 text = "[E] to interact"
 
